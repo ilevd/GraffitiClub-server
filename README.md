@@ -3,7 +3,7 @@
 A TCP GraffitiClub server, written in Erlang.
 Where are chat rooms, privates.
 Project page: https://vk.com/graffitionline
-For now project is not support.
+For now project is not supported.
 
 ## Usage
 
