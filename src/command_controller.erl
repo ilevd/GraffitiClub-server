@@ -7,7 +7,6 @@
 
 
 command( [authorize, AuthKey, ID, Fio, Sex, Photo, Link], SocketPid, ClientPid ) ->
-	%Player = user_manager:get_user( SocketPid ),
 	case utils:check_user( ID, AuthKey, user_manager:get_users() ) of
 		true ->
 			NewPlayer = #player{ socket_pid = SocketPid, client_pid = ClientPid, id = ID, fio = Fio, sex = Sex,
@@ -27,7 +26,6 @@ command( [authorize, AuthKey, ID, Fio, Sex, Photo, Link], SocketPid, ClientPid )
 command( [changeroom, RoomID], SocketPid, ClientPid ) ->
 	Player = user_manager:get_user_by_Pid( ClientPid ),
 	user_manager:remove_user( ClientPid ),
-	% io:format("Player: ~p~n", [Player]),
 	case Player#user_manager_player.room_id of
 		0 -> ok;
 		OldRoomID ->
@@ -35,7 +33,6 @@ command( [changeroom, RoomID], SocketPid, ClientPid ) ->
 			data_sender:send( users_info, RoomPlayers)
 	end,
 	user_manager:add_user( ClientPid, Player#user_manager_player.id, RoomID),
-	% io:format("Player3: ~p~n", [Player]),
 	data_sender:send( users_info, user_manager:get_room_users( RoomID )),
 	ok;
 
@@ -71,7 +68,6 @@ command( [ping], SocketPid, ClientPid) ->
 
 
 command( socket_close, SocketPid, ClientPid ) ->
-	% io:format("Command socket close!~n", []),
 	UPlayer = user_manager:get_user_by_Pid( ClientPid ),
 	case UPlayer of
 		false -> ok;
@@ -92,5 +88,4 @@ command( socket_close, SocketPid, ClientPid ) ->
 
 command( Command, SocketPid, ClientPid ) ->
 	error_logger:error_msg("CommandController: Unknown command: ~p, SocketPid:~p, ClientPid:~p~n", [Command, SocketPid, ClientPid]),
-	%% {unknown_command, Command, SocketPid, ClientPid}.
 	ok.

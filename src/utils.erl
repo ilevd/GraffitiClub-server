@@ -1,28 +1,18 @@
 -module( utils ).
 
-%%-include_lib("eunit/include/eunit.hrl").
-
-
 -include( "records.hrl").
-% -record( info, {client_pid, id}).
-
-
 
 -export( [decode/1, check_user/3, get_dir/1, file/0]).
 
-%%length_test() -> 3 = length([1,2,3]), ok.
 
 %%------------------ decode json------------------------
 decode( Data ) ->
 	try ejson:decode( Data ) of
 		DecodeData ->
-			% error_logger:info_msg("Utils decode: ~p~n", [DecodeData]),
-			% io:format("Utils decode: ~p~n", [DecodeData]) ,
 			bin_to_atom( DecodeData )
 	catch
 		Er1:Er2 ->
 			error_logger:info_msg("Utils decode: ~p, ~p, ~p~n", [Data, Er1, Er2]),
-			% io:format("Utils decode: ~p, ~p~n", [Er1, Er2]),
 			error
 	end.
 
@@ -48,21 +38,16 @@ convert(Bin) ->
 		catch
 			_:_ -> Bin
 	end.
-	% List = binary_to_list( Bin ),
 
 
-
-
-
-
-%%-------------- auth user --------------------------------
+%% auth user
 check_user( UserID, AuthKey, Players ) ->
 	case lists:keysearch( UserID, #user_manager_player.id, Players ) of
 		{value, _Player} -> false;
 		false ->
 			true
-			%% ApiID = "46529",
-			%% SecretKey = "XKEBwvKSiOmeCHZRSOMc",
+			%% ApiID = "-----",
+			%% SecretKey = "-------------",
 			%% md5_hex( iolist_to_binary(ApiID ++ "_" ++ binary_to_list(UserID) ++ "_" ++ SecretKey ) ) == binary_to_list( AuthKey )
 	end.
 
@@ -80,20 +65,10 @@ hex( V ) ->
 		end.
 
 
-
-
 get_dir( left ) -> {0, -1};
 get_dir( right ) -> {0, 1};
 get_dir( top ) -> {1, 0};
 get_dir( bottom ) -> {-1, 0}.
 
 
--define( FILE_PATH, "E:\\oval.jpg" ).
-
-file() ->
-	Ans = file:read_file( ?FILE_PATH ),
-	case Ans of
-		{ok, Bin} -> binary_to_hex( Bin );
-		_ -> error
-	end.
 

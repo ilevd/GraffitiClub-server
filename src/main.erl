@@ -24,14 +24,6 @@
 %%          {error, Reason}   
 %%--------------------------------------------------------------------
 start( _Type, _StartArgs) ->
-    %case 'TopSupervisor':start_link(StartArgs) of
-	%{ok, Pid} ->
-	%    {ok, Pid};
-	%Error ->
-	%    Error
-    %end.
-	% tcp_server:start(),
-	% user_manager:start().
 	error_logger:logfile( {open, ?LOG_PATH } ),
 	supervisor:start_link( {local, main_sup}, main_sup, []).
 

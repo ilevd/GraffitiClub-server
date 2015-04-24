@@ -30,21 +30,9 @@ handle_info( {inet_async, ListenSocket, Ref, {ok, CliSocket} },
 			exit( {set_sockopt, Reason} )
 	end,
 
-	% io:format("New async connection!~n",[]),
-
-	%% {ok, Pid} = tcp_fsm_client:start_link(),
-	%% gen_tcp:controlling_process( CliSocket, Pid ),
-	%% tcp_fsm_client:set_socket( Pid, CliSocket ),
-	
 	{ok, SocketPid} = tcp_client:start_link( CliSocket ),
 	{ok, PlayerPid} = player:start_link( SocketPid ),
 	tcp_client:set_socket( SocketPid, PlayerPid ),
-	% tcp_client:send( SocketPid, <<"Hello Flex!">>),
-	%% tcp_client:send( Pid, <<"Hello Flex!">>),
-	%% tcp_client:send( Pid, <<"Hello Flex2!">>),
-	%%io:format("New async connection1!~n",[]),
-	% client_manager:connect( SocketPid ),
-	%%io:format("New async connection2!~n",[]),
 
 	case prim_inet:async_accept( ListenSocket, -1 ) of
 		{ok, NewRef} -> ok;
@@ -63,8 +51,7 @@ handle_info( _Req, State ) ->
 	error_logger:error_msg( "TcpServer: Listen Unknown handle_info req: ~p~n", [_Req]),
 	{noreply, State}.
 
-  
-
+ 
 set_sockopt(ListSock, CliSocket) ->
 	true = inet_db:register_socket(CliSocket, inet_tcp),
 	case prim_inet:getopts(ListSock, [active, nodelay, keepalive, delay_send, priority, tos]) of

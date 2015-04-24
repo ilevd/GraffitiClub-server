@@ -72,6 +72,3 @@ send( users_info, RoomPlayers, ClientPid ) ->
 
 send_data( Players, SendData ) ->
 	lists:foreach( fun( Player ) -> player:send( Player#user_manager_player.client_pid, SendData ) end, Players ).
-
-%send_data( Players, SendData ) ->
-%	lists:foreach( fun( Player ) -> tcp_client:send( Player#player.socket_pid, SendData ) end, Players ).

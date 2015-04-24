@@ -23,5 +23,4 @@ init( [] ) ->
 		[user_manager]
 	},
 	{ok, {{one_for_all, ?MAX_RESTART, ?MAX_TIME}, [UserManagerSpec, TcpServerSpec]}}.
-	% {ok, {{one_for_one, ?MAX_RESTART, ?MAX_TIME}, [UserManagerSpec]}}.
-	% {ok, {{one_for_one, ?MAX_RESTART, ?MAX_TIME}, [ TcpServerSpec ]}}.
+
