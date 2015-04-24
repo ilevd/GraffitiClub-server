@@ -1,0 +1,40 @@
+-> ["authorize","6658a93d541fd6c1e270eee3d3d864df","1039023","Pavel Durov","2","http://cs4118.vkontakte.ru/u1039055/d_8c63b56a.jpg","link"]
+-> ["authorize","6658a93d541fd6c1e270eee3d3d864df","1039055","≈бурдей гордеич","2","http://cs4118.vkontakte.ru/u1039055/d_8c63b56a.jpg","link"]
+->["authorize","6658a93d541fd6c1e270eee3d3d864df","1039055","≈бурдей гордеич","2","http://cs4118.vkontakte.ru/u1039055/d_8c63b56a.jpg","1039055"]
+
+-> ["changeroom", "1"]
+-> ["changeroom", "0"]
+<- {"usersInfo":[{"id":"1023023","fio":"Pavel Durov","sex":"2","photo":"vk.ru"}]}
+
+
+-> ["chat", "Hello erlang!"]
+<- {"chat":{"id":"1023023","fio":"Pavel Durov","sex":"2","photo":"vk.ru","message":"Hello erlang!"}}
+
+-> ["draw",  "16711680 10 1 1405 -2110 0 2 0 2"]
+<- {"draw":{"id":"1023023","fio":"Pavel Durov","sex":"2","photo":"vk.ru","message":"16711680 10 1 1405 -2110 0 2 0 2"}}
+
+
+-> ["privatchat", "1023023", "Hello erlang!"]
+-> ["privatchat", "1039055", "Hello erlang!"]
+-> ["privatchat", "103905555", "Hello privat erlang!"]
+<- {"privatchat":{"id":"1023023","fio":"Pavel Durov","sex":"2","photo":"vk.ru","message":"Hello erlang!"}}
+
+-> ["privatdraw", "1039055", "16711680 10 1 1405 -2110 0 2 0 2"]
+<- {"privatdraw":{"id":"1023023","fio":"Pavel Durov","sex":"2","photo":"vk.ru","message":"16711680 10 1 1405 -2110 0 2 0 2"}}
+
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------
+Socket data: {"usersInfo":[{"id":"1039055","fio":"Igor Levd","sex":"2","photo":"photo.ru"}]}
+Socket data: {"message":{"id":"1039055","fio":"Igor Levd","sex":"2","photo":"photo.ru","message":"Hello erlang!"}}
+
+Socket data: {"usersInfo":[{"id":"1023023","fio":"Pavel Durov","sex":"2","photo":"vk.ru"},{"id":"103905555","fio":"\u0415\u0431\u0443\u0440\u0434\u0435\u0439 \u0433\u043E\u0440\u0434\u0435\u0438\u0447","sex":"2","photo":"http:\/\/cs4118.vkontakte.ru\/u1039055\/d_8c63b56a.jpg"}]}
+Socket data: {"privatchat":{"id":"1023023","fio":"Pavel Durov","sex":"2","photo":"vk.ru","message":"Hello erlang!"}}
+
+Socket data: {"privatdraw":{"id":"1023023","fio":"Pavel Durov","sex":"2","photo":"vk.ru","message":"16711680 10 1 1405 -2110 0 2 0 2"}}
+
+1 вход с 1 ид
+авторизаци€
+ограничени€ на длину сообщени€
+-мигание привата
+-переход из комнаты в комнату
