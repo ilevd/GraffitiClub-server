@@ -2,12 +2,12 @@
 
 A TCP GraffitiClub server, written in Erlang.
 Where are chat rooms, privates.
-Project page: https://vk.com/graffitionline
+App page: https://vk.com/graffitionline
 For now project is not supported.
 
 ## Usage
 
-Run like over Erlang projects
+Run like other Erlang projects
 
 ## License
 
